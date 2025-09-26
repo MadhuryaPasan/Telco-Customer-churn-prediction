@@ -1,0 +1,24 @@
+Member 2: Data Integration
+Focus: Combine data from multiple sources into a coherent store, handling redundancies, entity identification, and value conflicts (lecture slides 50-51). Although this is a single CSV, treat internal inconsistencies as if from merged sources (e.g., varying representations). Minimal for this dataset, but check for derivable/redundant attributes.
+Specific Tasks:
+
+Input: Take Member 1's cleaned DataFrame.
+Entity Identification: Identify and resolve duplicates/conflicts (lecture: e.g., Bill Clinton = William Clinton; here, check if customerID has near-duplicates or if names/codes conflict).
+
+Scan for similar records (e.g., using fuzzy matching on gender or service fields if still variant).
+
+
+Detect and Resolve Value Conflicts: Different representations/scales (lecture: metric vs. British, but here: string vs. numeric conflicts).
+
+Charges: Ensure TotalCharges aligns with MonthlyCharges * tenure (calculate derived TotalCharges; flag discrepancies as conflicts and correct via average).
+Service fields: Merge related fields (e.g., if InternetService="No", set all online/streaming to "No" to resolve implied conflicts).
+
+
+Handle Redundancy: Detect via correlation (lecture slide 51: correlation/covariance analysis).
+
+Compute correlations (e.g., df.corr()); remove if high (e.g., if TotalCharges highly correlates with tenure * MonthlyCharges, note for reduction).
+Check derivable data (e.g., if Partner/Dependents imply household size, but not directly here).
+
+
+Integration: Since single file, simulate by ensuring schema consistency (e.g., all categoricals as strings, numerics as floats).
+Output: Integrated DataFrame with resolved conflicts/redundancies, saved for next member. No major merging needed, but this step ensures coherence.

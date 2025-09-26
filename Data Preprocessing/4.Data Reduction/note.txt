@@ -1,0 +1,27 @@
+Member 4: Data Reduction
+Focus: Obtain reduced representation (smaller volume, same results) via dimensionality/numerosity reduction, compression (lecture slides 30-49). For the dataset, reduce features/rows for efficient modeling without losing churn prediction power.
+Specific Tasks:
+
+Input: Take Member 3's transformed DataFrame.
+Dimensionality Reduction: Remove unimportant attributes (lecture slides 31-36: PCA, feature selection, wavelet).
+
+Drop irrelevant (customerID).
+Feature selection: Heuristic (e.g., chi-squared for categoricals on Churn; remove low-variance like all "No" services).
+PCA: Apply on numerics (tenure, charges) to reduce to 2-3 components if correlated.
+
+
+Numerosity Reduction: Smaller forms (lecture slides 38-45: regression, histograms, clustering, sampling).
+
+Parametric: Fit regression (e.g., log-linear for charges distribution).
+Non-parametric: Stratified sampling (80% of data, stratified by Churn to handle imbalance); or clustering (group similar customers, store centroids).
+Histograms: For charges, reduce to bucket summaries if needed.
+
+
+Data Compression: Lossless/lossy (lecture slides 47-48: string/audio, but here: compress strings if large, or approximate via reduction).
+
+Minimal, but use if dataset size is issue (e.g., snappy compression for storage).
+
+
+Data Cube Aggregation: If applicable, aggregate (e.g., by Contract type), but skip for flat data.
+Final Preparation: Balance classes (if Churn imbalanced via oversampling); split 80/20 train/test stratified by Churn.
+Output: Reduced DataFrame (e.g., fewer columns/rows), ready for modeling (X_train, y_train, etc.). Ensure quality preserved (e.g., check accuracy post-reduction).

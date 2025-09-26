@@ -1,0 +1,38 @@
+Member 3: Data Transformation and Data Discretization
+Focus: Map values to new sets, normalize, smooth, construct features, discretize (lecture slides 15-28). For the dataset, transform for model compatibility (e.g., scale numerics, encode categoricals, discretize for better patterns).
+Specific Tasks:
+
+Input: Take Member 2's integrated DataFrame.
+Smoothing: Remove remaining noise (lecture: already partially in cleaning, but refine with regression or binning).
+
+Use linear regression on tenure vs. charges to smooth outliers.
+
+
+Normalization: Scale to small range (lecture slides 16-18: min-max, z-score, decimal scaling).
+
+MonthlyCharges/TotalCharges: Min-max to [0,1] (e.g., for high variance).
+Tenure: Z-score (mean=0, std=1).
+Avoid on binaries like SeniorCitizen.
+
+
+Attribute/Feature Construction: Create new features (lecture slide 36).
+
+Derive AvgMonthlyCharge = TotalCharges / tenure (handle tenure=0 by adding small epsilon).
+Combine services (e.g., TotalServices = count of "Yes" in PhoneService, MultipleLines, etc.).
+
+
+Aggregation: Summarize if needed (e.g., group by Contract for means, but minimal here).
+Discretization: Divide continuous into intervals (lecture slides 20-25: binning, histogram, clustering, decision tree, correlation).
+
+Tenure: Equal-width binning into [0-12: "Short", 13-36: "Medium", 37+: "Long"].
+Charges: Equal-frequency binning into low/medium/high.
+Use supervised (decision tree on Churn) or unsupervised (clustering).
+
+
+Concept Hierarchy Generation: For categoricals (lecture slides 27-28: automatic based on distinct values).
+
+Contract: Hierarchy like Month-to-month → One year → Two year.
+
+
+Encoding: One-hot for nominal (e.g., gender, InternetService); label for ordinal (if discretized).
+Output: Transformed DataFrame with new features, normalized/discretized values. (Weka: Lab1.4 Normalization, Lab1.2 Binning).
