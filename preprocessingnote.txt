@@ -1,0 +1,15 @@
+remove TotalServices,PremiumCustomer,ElectronicPayment
+
+error in 3
+
+contract_hierarchy = {'Month-to-month': 1, 'One year': 2, 'Two year': 3}
+to  this
+contract_hierarchy = {'Month-to-Month': 1, 'One year': 2, 'Two year': 3}
+or remove this column and do Encoding Method(this is best)
+this is example
+cat_cols = ['gender','InternetService','PaymentMethod','Contract',
+            'TenureGroup','MonthlyChargeGroup','TotalChargeGroup','AvgMonthlyChargeGroup']
+
+df = pd.get_dummies(df, columns=cat_cols, drop_first=True)
+
+3 -> do the contract the same thing
