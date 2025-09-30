@@ -30,7 +30,7 @@ st.markdown("""
     <style>
     div.stButton > button {
         all: unset;
-        width: 200px;
+        width: 180px;
         padding: 12px 20px;
         margin-bottom: 6px;
         border-radius: 8px;
@@ -62,7 +62,7 @@ for page_name in pages.keys():
     is_active = page_name == st.session_state.current_page
 
    
-    if st.sidebar.button(page_name, key=page_name):
+    if st.sidebar.button(page_name, key=page_name, width='stretch'):
         st.session_state.current_page = page_name
         is_active = True  
 
