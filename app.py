@@ -3,6 +3,7 @@ from sub_pages.prediction import prediction_page
 from sub_pages.insights import insights_page
 from sub_pages.about import about_page
 from sub_pages.home import home_page
+from sub_pages.help import help_page
 
 
 st.set_page_config(
@@ -15,7 +16,8 @@ pages = {
     "Home": home_page,
     "Prediction": prediction_page,
     "Insights": insights_page,
-    "About": about_page
+    "About": about_page,
+    "Help": help_page,
 }
 
 
