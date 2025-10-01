@@ -66,3 +66,6 @@ def insights_page():
     # with col2:
     #     st.subheader("Churn by Internet Service")
     #     st.bar_chart({"DSL": [120], "Fiber optic": [180], "No": [30]})
+
+
+
