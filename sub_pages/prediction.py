@@ -182,15 +182,55 @@ def prediction_page():
             customer_data=customer_features, threshold=0.5
         )
 
-        st.toast("Prediction is successful")
+        st.toast("✅ Prediction is successful")
         st.success(
             f"Prediction: **{prediction}** **`({class_label})`**")
 
+        # st.markdown(
+        #     f"""
+        #     ---
+        #     **Details**
+        #     * Probability: `{probability:.4f}`
+        #     * Threshold Used: `{threshold}`
+        #     """
+        # )
+        
+        # Add the interpretation of the prediction
+        if prediction == 1:
+            st.info("⚠️ **Action Recommended:** This customer is predicted to **Churn**.")
+        else:
+            st.info("✅ **Good News:** This customer is predicted to **NOT Churn**.")
+
+        st.markdown("---")
+
+        # 2. Details Section (Existing Code with minor formatting adjustments)
         st.markdown(
             f"""
-            ---
             **Details**
-            * Probability: `{probability:.4f}`
-            * Threshold Used: `{threshold}`
+            * **Probability:** `{probability:.4f}`
+            * **Threshold Used:** `{threshold}`
             """
         )
+
+        # 3. Interpretation of Probability and Threshold (New Details)
+        st.markdown("---")
+        st.markdown(
+            """
+            ### Interpretation
+            """
+        )
+
+        # Detail 3a: Explain the Probability
+        st.markdown(
+            f"""
+            The model estimates a **{probability:.2%}** probability that this customer will churn.
+            """
+        )
+
+        # Detail 3b: Explain the decision logic
+        st.markdown(
+            f"""
+            Since the predicted probability of **{probability:.4f}** is **{'greater' if probability > threshold else 'less'}** than the decision threshold of **{threshold}**, the final classification is **`{class_label}`**.
+            """
+        )
+        st.markdown("---")
