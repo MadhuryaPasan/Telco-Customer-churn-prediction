@@ -64,7 +64,7 @@ def insights_page():
     col1, col2 = st.columns([3, 2])
     with col1:
         st.subheader("Dataset Preview (First 10 Rows)")
-        st.dataframe(before_preprocessing_dataset.iloc[:10, 1:10], use_container_width=True)
+        st.dataframe(before_preprocessing_dataset.iloc[:10, 1:], use_container_width=True)
     
     with col2:
         st.subheader("Key Statistics")
@@ -72,7 +72,7 @@ def insights_page():
         st.metric("Total Customers", len(before_preprocessing_dataset))
         st.metric("Churn Rate", f"{churn_rate:.1f}%")
         st.metric("Senior Citizens Count", f"{before_preprocessing_dataset['SeniorCitizen'].sum()}")
-        st.markdown("**Note:** Features shown are non-encoded original values.")
+        st.markdown("**Note:** Features shown are non-encoded original values.Highly sensitive details are removed.")
     
     st.markdown("---") # Separator
     
