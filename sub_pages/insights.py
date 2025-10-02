@@ -171,3 +171,12 @@ def insights_page():
     - **Model Strengths**: The model achieves a decent overall accuracy but shows stronger performance in **predicting non-churn** (high True Negatives) than churn (True Positives).
     - **Preprocessing Impact**: The model was trained using three different techniques: Logistic Regression, MLP Classifier, and Decision Tree. The performance of these models was compared, and from this analysis, Logistic Regression was determined to be the best model.
     """)
+
+        # Footer
+    st.markdown(
+        "<div class='footer'>"
+        "Built with  by RuleQuest | Telco Customer Churn Prediction Project | "
+        "Driving Customer Retention Through AI Innovation"
+        "</div>",
+        unsafe_allow_html=True,
+    )

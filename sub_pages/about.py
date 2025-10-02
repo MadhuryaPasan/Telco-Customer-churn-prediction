@@ -103,8 +103,11 @@ def about_page():
         """, unsafe_allow_html=True)
 
     st.markdown("---")
-    st.markdown("""
-    <div style="text-align: center; color: #666; padding: 20px;">
-    <p><b>Telco Customer Churn Prediction System</b> | Version 2.1.0 | Last Updated: October 2025</p>
-    </div>
-    """, unsafe_allow_html=True)
+        # Footer
+    st.markdown(
+        "<div class='footer'>"
+        "Built with  by RuleQuest | Telco Customer Churn Prediction Project | "
+        "Driving Customer Retention Through AI Innovation"
+        "</div>",
+        unsafe_allow_html=True,
+    )

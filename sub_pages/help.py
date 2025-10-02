@@ -49,3 +49,11 @@ def help_page():
 
     ---
     """)
+    # Footer
+    st.markdown(
+        "<div class='footer'>"
+        "Built with  by RuleQuest | Telco Customer Churn Prediction Project | "
+        "Driving Customer Retention Through AI Innovation"
+        "</div>",
+        unsafe_allow_html=True,
+    )
