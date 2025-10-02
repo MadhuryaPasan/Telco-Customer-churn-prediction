@@ -1,0 +1,16 @@
+# Core data science and machine learning libraries
+numpy
+pandas
+scikit-learn
+tensorflow
+keras
+
+# Data visualization
+matplotlib
+seaborn
+
+# Application framework and utilities
+streamlit
+joblib
+pickle
+base64
