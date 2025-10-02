@@ -11,7 +11,7 @@ def get_base64_of_image(image_path):
 
 def home_page():
     # Load and convert local image
-    image_path = "sub_pages/assets/telco_image.jpg"
+    image_path = "sub_pages/assets/telco_image.webp"
     image_base64 = get_base64_of_image(image_path)
 
     # Inject CSS with base64 image
