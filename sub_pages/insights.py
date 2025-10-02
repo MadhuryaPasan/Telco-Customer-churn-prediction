@@ -51,8 +51,8 @@ def insights_page():
     # ----------------------------
     # Load Dataset & Model
     # ----------------------------
-    DATA_PATH = "Data Preprocessing/Model training/04.reduced_telco_data.csv"
-    MODEL_PATH = "Data Preprocessing/Model training/telco_churn_prediction_model_V1.0.keras"
+    DATA_PATH = "Data Preprocessing/4.Data Reduction/04.reduced_telco_data.csv"
+    MODEL_PATH = "helper/telco_churn_prediction_model_V1.0.keras"
 
     df = pd.read_csv(DATA_PATH)
     model = load_model(MODEL_PATH)
