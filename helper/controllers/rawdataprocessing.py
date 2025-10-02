@@ -1,10 +1,25 @@
 import pandas as pd
 import pickle
+from pathlib import Path
 
 
-with open("helper/controllers/tenure_zscore_scaler.pkl", "rb") as f:
+# with open("helper/controllers/tenure_zscore_scaler.pkl", "rb") as f:
+#     tenure_scaler = pickle.load(f)
+# with open("helper/controllers/charges_minmax_scaler.pkl", "rb") as f:
+#     charges_scaler = pickle.load(f)
+
+
+# Get the directory of the current script (rawdataprocessing.py)
+BASE_DIR = Path(__file__).parent 
+
+# Use BASE_DIR to build the absolute path to your .pkl files
+TENURE_SCALER_PATH = BASE_DIR / "tenure_zscore_scaler.pkl"
+CHARGES_SCALER_PATH = BASE_DIR / "charges_minmax_scaler.pkl"
+
+with open(TENURE_SCALER_PATH, "rb") as f:
     tenure_scaler = pickle.load(f)
-with open("helper/controllers/charges_minmax_scaler.pkl", "rb") as f:
+
+with open(CHARGES_SCALER_PATH, "rb") as f:
     charges_scaler = pickle.load(f)
 
 
