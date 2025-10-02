@@ -3,12 +3,37 @@ import streamlit as st
 
 
 def help_page():
-    st.title("ℹ️ Input Fields Explanation")
+    
+    page_bg = f"""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    body {{
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #e0f7ff, #a1c4fd, #ffffff);
+        color: #000000;
+    }}
+
+    .footer {{
+        text-align: center;
+        color: #000000;
+        font-size: 0.9rem;
+        margin-top: 3rem;
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }}
+    </style>
+    """
+    st.markdown(page_bg, unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>Input Fields Explanation</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center;'>Here’s an explanation of each input field used in the Telco Customer Churn Prediction form:</p>", unsafe_allow_html=True)
+    st.markdown("---")
 
     st.markdown("""
-    Here’s an explanation of each input field used in the Telco Customer Churn Prediction form:
-
-    ---
 
     ### 👤 Customer Information
 
