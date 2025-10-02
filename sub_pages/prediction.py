@@ -31,12 +31,12 @@ def prediction_page():
     """
     st.markdown(page_bg, unsafe_allow_html=True)
     
-    st.markdown("<h1 style='text-align: center;'>Customer Details</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>Telco Customer Churn Prediction</h1>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: center;'>Fill out the information below to predict churn:</p>", unsafe_allow_html=True)
     st.markdown("---") 
 
     with st.form("prediction_form"):
-        st.header("📊 Telco Customer Churn Prediction")
+      
 
         # --- Customer Info ---
         st.subheader("👤 Customer Information")
