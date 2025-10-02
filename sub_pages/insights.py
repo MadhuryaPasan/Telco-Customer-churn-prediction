@@ -54,8 +54,37 @@ classification_report_result = classification_report(y_test, y_pred)
 
 # --- Streamlit UI Function (Refactored) ---
 def insights_page():
+    
+    page_bg = f"""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    body {{
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #e0f7ff, #a1c4fd, #ffffff);
+        color: #000000;
+    }}
+
+    .footer {{
+        text-align: center;
+        color: #000000;
+        font-size: 0.9rem;
+        margin-top: 3rem;
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }}
+    </style>
+    """
+    st.markdown(page_bg, unsafe_allow_html=True)
+    
     st.set_page_config(layout="wide")
-    st.title("📊 Model Insights and Telco Dataset Analysis")
+    
+    st.markdown("<h1 style='text-align: center;'>Model Insights and Telco Dataset Analysis</h1>", unsafe_allow_html=True)
+    st.markdown("---")
     
     # Section 1: Original Dataset Overview
     st.header("📋 Original Dataset (Before Preprocessing)")
