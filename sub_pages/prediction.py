@@ -175,8 +175,11 @@ def prediction_page():
             StreamingMovies_Yes,
         ]
 
-        prediction, probability, threshold ,class_label = predict_new_customer_churn(
-            customer_data=customer_features, model=loaded_model, threshold=0.5
+        # prediction, probability, threshold ,class_label = predict_new_customer_churn_mlp(
+        #     customer_data=customer_features, threshold=0.5
+        # )
+        prediction, probability, threshold ,class_label = predict_new_customer_churn_LogisticRegression(
+            customer_data=customer_features, threshold=0.5
         )
 
         st.toast("Prediction is successful")
