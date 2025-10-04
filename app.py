@@ -15,7 +15,7 @@ st.set_page_config(
 pages = {
     "Home": home_page,
     "Prediction": prediction_page,
-    "Insights": insights_page,
+    # "Insights": insights_page,
     "About": about_page,
     "Help": help_page,
 }
