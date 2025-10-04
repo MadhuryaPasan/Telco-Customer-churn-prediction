@@ -80,7 +80,7 @@ def about_page():
 
     st.markdown("### 🚀 Key Features")
 
-    col1, col2, col3 = st.columns(3)
+    col1, col2 = st.columns(2)
 
     with col1:
         st.markdown(
@@ -93,18 +93,18 @@ def about_page():
             unsafe_allow_html=True,
         )
 
-    with col2:
-        st.markdown(
-            """
-        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 20px; border-radius: 15px; height: 200px;">
-        <h4 style="color: white;">📊 Deep Insights</h4>
-        <p>Interactive dashboards reveal churn patterns, customer behavior trends, and key influencing factors</p>
-        </div>
-        """,
-            unsafe_allow_html=True,
-        )
+    # with col2:
+    #     st.markdown(
+    #         """
+    #     <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 20px; border-radius: 15px; height: 200px;">
+    #     <h4 style="color: white;">📊 Deep Insights</h4>
+    #     <p>Interactive dashboards reveal churn patterns, customer behavior trends, and key influencing factors</p>
+    #     </div>
+    #     """,
+    #         unsafe_allow_html=True,
+    #     )
 
-    with col3:
+    with col2:
         st.markdown(
             """
         <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 20px; border-radius: 15px; height: 200px;">
