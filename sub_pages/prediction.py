@@ -4,12 +4,34 @@ from helper.churn_prediction import *
 
 
 def prediction_page():
-    
+
     page_bg = f"""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+    .hero-section {{
+        text-align: center;
+        padding: 3rem 2rem;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.95), rgba(118, 75, 162, 0.95));
+        border-radius: 20px;
+        margin-bottom: 2rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }}
+    
+    .hero-title {{
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }}
+    
+    .hero-subtitle {{
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 400;
+    }}
     body {{
         font-family: 'Poppins', sans-serif;
         background: linear-gradient(135deg, #e0f7ff, #a1c4fd, #ffffff);
@@ -30,13 +52,17 @@ def prediction_page():
     </style>
     """
     st.markdown(page_bg, unsafe_allow_html=True)
-    
-    st.markdown("<h1 style='text-align: center;'>Telco Customer Churn Prediction</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center;'>Fill out the information below to predict churn:</p>", unsafe_allow_html=True)
-    st.markdown("---") 
+    st.markdown(
+        """
+    <div class='hero-section'>
+        <div class='hero-title'>Churn Prediction</div>
+        <div class='hero-subtitle'>Fill out the information below to predict churn</div>
+    </div>
+    """,
+        unsafe_allow_html=True,
+    )
 
     with st.form("prediction_form"):
-      
 
         # --- Customer Info ---
         st.subheader("👤 Customer Information")
@@ -206,8 +232,10 @@ def prediction_page():
         # prediction, probability, threshold ,class_label = predict_new_customer_churn_mlp(
         #     customer_data=customer_features, threshold=0.5
         # )
-        prediction, probability, threshold ,class_label = predict_new_customer_churn_LogisticRegression(
-            customer_data=customer_features, threshold=0.5
+        prediction, probability, threshold, class_label = (
+            predict_new_customer_churn_GradientBoostingClassifier(
+                customer_data=customer_features, threshold=0.5
+            )
         )
 
         st.toast("✅ Prediction successful! Review the result below.")
@@ -227,14 +255,14 @@ def prediction_page():
                         This customer is likely to leave soon
                     </p>
                 </div>
-                """, 
-                unsafe_allow_html=True
+                """,
+                unsafe_allow_html=True,
             )
-            
+
             # Action Items
             st.markdown("### 🎯 Recommended Actions")
             col1, col2 = st.columns(2)
-            
+
             with col1:
                 st.markdown(
                     """
@@ -246,9 +274,9 @@ def prediction_page():
                         </p>
                     </div>
                     """,
-                    unsafe_allow_html=True
+                    unsafe_allow_html=True,
                 )
-            
+
             with col2:
                 st.markdown(
                     """
@@ -260,9 +288,9 @@ def prediction_page():
                         </p>
                     </div>
                     """,
-                    unsafe_allow_html=True
+                    unsafe_allow_html=True,
                 )
-            
+
         else:
             # Low Risk Card
             st.markdown(
@@ -277,10 +305,10 @@ def prediction_page():
                         This customer is predicted to stay
                     </p>
                 </div>
-                """, 
-                unsafe_allow_html=True
+                """,
+                unsafe_allow_html=True,
             )
-            
+
             # Success Actions
             st.markdown("### 💡 Keep Them Happy")
             st.markdown(
@@ -293,7 +321,7 @@ def prediction_page():
                     </p>
                 </div>
                 """,
-                unsafe_allow_html=True
+                unsafe_allow_html=True,
             )
 
         st.markdown("<br>", unsafe_allow_html=True)
@@ -318,7 +346,7 @@ def prediction_page():
             else:
                 bar_color = "#28a745"  # Green
                 risk_label = "Low Risk"
-            
+
             st.markdown(
                 f"""
                 <div style='background-color: #e9ecef; border-radius: 10px; 
@@ -333,7 +361,7 @@ def prediction_page():
                     </div>
                 </div>
                 """,
-                unsafe_allow_html=True
+                unsafe_allow_html=True,
             )
 
         with col2:
@@ -352,7 +380,7 @@ def prediction_page():
                 </p>
             </div>
             """,
-            unsafe_allow_html=True
+            unsafe_allow_html=True,
         )
 
         # Footer
