@@ -210,63 +210,155 @@ def prediction_page():
             customer_data=customer_features, threshold=0.5
         )
 
-        st.toast("✅ Prediction is successful")
-        st.success(
-            f"Prediction: **{prediction}** **`({class_label})`**")
+        st.toast("✅ Prediction successful! Review the result below.")
 
-        # st.markdown(
-        #     f"""
-        #     ---
-        #     **Details**
-        #     * Probability: `{probability:.4f}`
-        #     * Threshold Used: `{threshold}`
-        #     """
-        # )
-        
-        # Add the interpretation of the prediction
+        # --- Main Result Display ---
         if prediction == 1:
-            st.info("⚠️ **Action Recommended:** This customer is predicted to **Churn**.")
+            # High Risk Card
+            st.markdown(
+                """
+                <div style='background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%); 
+                            padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem;
+                            box-shadow: 0 4px 6px rgba(0,0,0,0.1);'>
+                    <h1 style='color: white; margin: 0; font-size: 2rem;'>
+                        🚨 High Churn Risk Detected
+                    </h1>
+                    <p style='color: rgba(255,255,255,0.95); font-size: 1.2rem; margin-top: 0.5rem;'>
+                        This customer is likely to leave soon
+                    </p>
+                </div>
+                """, 
+                unsafe_allow_html=True
+            )
+            
+            # Action Items
+            st.markdown("### 🎯 Recommended Actions")
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.markdown(
+                    """
+                    <div style='background-color: #fff3cd; padding: 1.2rem; 
+                                border-radius: 10px; border-left: 4px solid #ffc107;'>
+                        <h4 style='margin-top: 0; color: #856404;'>📞 Contact Customer</h4>
+                        <p style='color: #856404; margin-bottom: 0;'>
+                            Reach out proactively to understand concerns
+                        </p>
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
+            
+            with col2:
+                st.markdown(
+                    """
+                    <div style='background-color: #d1ecf1; padding: 1.2rem; 
+                                border-radius: 10px; border-left: 4px solid #17a2b8;'>
+                        <h4 style='margin-top: 0; color: #0c5460;'>🎁 Retention Offer</h4>
+                        <p style='color: #0c5460; margin-bottom: 0;'>
+                            Consider special pricing or service upgrade
+                        </p>
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
+            
         else:
-            st.info("✅ **Good News:** This customer is predicted to **NOT Churn**.")
+            # Low Risk Card
+            st.markdown(
+                """
+                <div style='background: linear-gradient(135deg, #51cf66 0%, #37b24d 100%); 
+                            padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem;
+                            box-shadow: 0 4px 6px rgba(0,0,0,0.1);'>
+                    <h1 style='color: white; margin: 0; font-size: 2rem;'>
+                        ✅ Low Churn Risk
+                    </h1>
+                    <p style='color: rgba(255,255,255,0.95); font-size: 1.2rem; margin-top: 0.5rem;'>
+                        This customer is predicted to stay
+                    </p>
+                </div>
+                """, 
+                unsafe_allow_html=True
+            )
+            
+            # Success Actions
+            st.markdown("### 💡 Keep Them Happy")
+            st.markdown(
+                """
+                <div style='background-color: #d4edda; padding: 1.2rem; 
+                            border-radius: 10px; border-left: 4px solid #28a745;'>
+                    <p style='color: #155724; margin: 0; font-size: 1.05rem;'>
+                        <strong>Continue excellent service</strong> and maintain regular engagement 
+                        to ensure this customer remains satisfied.
+                    </p>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
-        st.markdown("---")
+        st.markdown("<br>", unsafe_allow_html=True)
 
-        # 2. Details Section (Existing Code with minor formatting adjustments)
+        # --- Probability Visual Display ---
+        st.markdown("### 📊 Confidence Level")
+
+        # Create a visual progress bar for probability
+        col1, col2 = st.columns([3, 1])
+
+        with col1:
+            # Determine color based on risk level
+            if probability >= 0.7:
+                bar_color = "#dc3545"  # Red
+                risk_label = "Very High Risk"
+            elif probability >= 0.5:
+                bar_color = "#fd7e14"  # Orange
+                risk_label = "High Risk"
+            elif probability >= 0.3:
+                bar_color = "#ffc107"  # Yellow
+                risk_label = "Moderate Risk"
+            else:
+                bar_color = "#28a745"  # Green
+                risk_label = "Low Risk"
+            
+            st.markdown(
+                f"""
+                <div style='background-color: #e9ecef; border-radius: 10px; 
+                            padding: 0.5rem; margin-bottom: 1rem;'>
+                    <div style='background-color: {bar_color}; width: {probability*100}%; 
+                                height: 30px; border-radius: 8px; 
+                                display: flex; align-items: center; justify-content: center;
+                                transition: width 0.3s ease;'>
+                        <span style='color: white; font-weight: bold; font-size: 0.9rem;'>
+                            {probability:.1%}
+                        </span>
+                    </div>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+        with col2:
+            st.metric("Churn Probability", f"{probability:.1%}", risk_label)
+
+        # Simple explanation without technical jargon
         st.markdown(
             f"""
-            **Details**
-            * **Probability:** `{probability:.4f}`
-            * **Threshold Used:** `{threshold}`
-            """
+            <div style='background-color: #f8f9fa; padding: 1rem; 
+                        border-radius: 10px; margin-top: 1rem;'>
+                <p style='margin: 0; color: #495057; font-size: 0.95rem;'>
+                    <strong>What this means:</strong> Our prediction model analyzed this customer's 
+                    behavior and estimates a <strong>{probability:.1%}</strong> likelihood of churn. 
+                    {f"This exceeds our {threshold:.0%} alert threshold, triggering a high-risk classification." if prediction == 1 
+                    else f"This is below our {threshold:.0%} alert threshold, indicating the customer is likely to stay."}
+                </p>
+            </div>
+            """,
+            unsafe_allow_html=True
         )
 
-        # 3. Interpretation of Probability and Threshold (New Details)
-        st.markdown("---")
-        st.markdown(
-            """
-            ### Interpretation
-            """
-        )
-
-        # Detail 3a: Explain the Probability
-        st.markdown(
-            f"""
-            The model estimates a **{probability:.2%}** probability that this customer will churn.
-            """
-        )
-
-        # Detail 3b: Explain the decision logic
-        st.markdown(
-            f"""
-            Since the predicted probability of **{probability:.4f}** is **{'greater' if probability > threshold else 'less'}** than the decision threshold of **{threshold}**, the final classification is **`{class_label}`**.
-            """
-        )
-        st.markdown("---")
-        
         # Footer
         st.markdown(
             "<div class='footer'>"
-            "Built with  by RuleQuest | Telco Customer Churn Prediction Project | "
+            "Built with  by RuleQuest | Telco Customer Churn Prediction Project | "
             "Driving Customer Retention Through AI Innovation"
             "</div>",
             unsafe_allow_html=True,
